@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GFX/white-platformer-tileset.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/Hitbox.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 4.5 )
+
+[node name="Crab" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 80, 16, 16 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, 3.5 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_entered"]
