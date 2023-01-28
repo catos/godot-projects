@@ -22,7 +22,10 @@ var input = Vector2.ZERO
 var velocity = Vector2.ZERO
 var coyote_jump = false
 
-#	label.set_text("Velocity: %s, %s" % [round(velocity.x), round(velocity.y)])
+#func _draw():
+#	var from = global_transform.origin
+#	var to = global_transform.origin + velocity
+#	draw_line(from, to, Color(0.0, 0.0, 1.0))
 
 func _physics_process(delta):
 	input.x = Input.get_axis("ui_left", "ui_right")
@@ -91,12 +94,12 @@ func crouch_state(delta):
 func jump():
 	velocity.y = -jump_force
 
-func collided_with_enemy(damage):
+func collided_with_enemy(damage, otherPosition):
 	print(healthLossTimer.get_time_left())
 	if healthLossTimer.get_time_left() == 0:
 		velocity.x *= -3 # TODO: improve this :D
 		hitpoints -= damage
-		print("Damage: %s, hitpoints: %s" % [damage, hitpoints])
+		print("other pos: %s" % [otherPosition])
 		Events.emit_signal("update_player_health", hitpoints)
 		healthLossTimer.start()
 	

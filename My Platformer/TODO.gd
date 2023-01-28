@@ -6,13 +6,14 @@ extends Node
 # Better camera
 
 ## In progress
-# Player FSM
-# Smooth movement
+# Draw custom player velocity vector
 # First enemy
 # Health & UI
+# Smooth movement
 # Damage
 
 ## Done
+# Player FSM
 # Camera
 # Simple tilemap
 # Basic movement
