@@ -6,3 +6,8 @@
 - Parallax background
 - UI, Control.* nodes
 - Better camera movement and where to put it
+
+
+## To test
+
+- Day-night cycle with CanvasModulate ?
