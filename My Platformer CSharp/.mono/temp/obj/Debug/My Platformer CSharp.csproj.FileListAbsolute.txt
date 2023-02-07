@@ -1,0 +1,9 @@
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\bin\Debug\My Platformer CSharp.dll
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\bin\Debug\My Platformer CSharp.pdb
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\obj\Debug\My Platformer CSharp.csproj.AssemblyReference.cache
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\obj\Debug\My Platformer CSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\obj\Debug\My Platformer CSharp.AssemblyInfoInputs.cache
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\obj\Debug\My Platformer CSharp.AssemblyInfo.cs
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\obj\Debug\My Platformer CSharp.csproj.CoreCompileInputs.cache
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\obj\Debug\My Platformer CSharp.dll
+C:\Godot\Projects\My Platformer CSharp\.mono\temp\obj\Debug\My Platformer CSharp.pdb
