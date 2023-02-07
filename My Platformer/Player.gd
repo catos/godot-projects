@@ -37,7 +37,6 @@ func _physics_process(delta):
 	# Flip sprite if input
 	if input.x != 0:
 		animatedSprite.flip_h = input.x < 0
-	
 
 	match state:
 		STATES.move: 
@@ -48,7 +47,7 @@ func _physics_process(delta):
 			jump_state(delta)
 		STATES.fall: 
 			debug.text = "fall"
-			jump_state(delta)
+			fall_state(delta)
 		STATES.crouch: 
 			debug.text = "crouch"
 			crouch_state(delta)
@@ -85,6 +84,7 @@ func jump_state(_delta):
 		state = STATES.move
 
 func fall_state(_delta):
+	velocity = move_and_slide(velocity, Vector2.UP)
 	animatedSprite.animation = "Fall"
 
 	if is_on_floor():
