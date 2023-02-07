@@ -9,6 +9,6 @@ func _ready():
 	target_node = get_node(target_path)
 	self.position = target_node.position
 
-func _process(delta):
+func _process(_delta):
 	self.position = target_node.position
 #	self.position = lerp(self.position, target_node.position, lerp_speed * delta)

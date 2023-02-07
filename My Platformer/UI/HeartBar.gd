@@ -4,7 +4,9 @@ var heart_full = preload("res://GFX/heart-full.png")
 var heart_empty = preload("res://GFX/heart-empty.png")
 
 func _ready():
-	Events.connect("update_player_health", self, "update_health")
+	var error = Events.connect("update_player_health", self, "update_health")
+	if error:
+		print(error)
 
 func update_health(value):
 	for i in get_child_count():
