@@ -15,7 +15,7 @@ export (PackedScene) var Bullet
 export (float, 0, 1.0) var friction = 0.2
 export (float, 0, 1.0) var acceleration = 0.25
 
-export var move_speed: float = 150.0
+export var move_speed: float = 125.0
 
 export var jump_height: float = 40.0
 export var jump_time_to_peak: float = 0.4
