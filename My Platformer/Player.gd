@@ -7,18 +7,26 @@ onready var collisionShape := $CollisionShape2D
 onready var animatedSprite := $AnimatedSprite
 onready var coyoteJumpTimer := $CoyoteJumpTimer
 onready var healthLossTimer := $HealthLossTimer
+#onready var gun := $Gun
 onready var debug := $Debug
+
+export (PackedScene) var Bullet
 
 export (float, 0, 1.0) var friction = 0.2
 export (float, 0, 1.0) var acceleration = 0.25
 
-export (int) var jump_force = 160
-export (int) var gravity = 325
-export (int) var max_gravity = 300
+export var move_speed: float = 150.0
+
+export var jump_height: float = 40.0
+export var jump_time_to_peak: float = 0.4
+export var jump_time_to_descent: float = 0.3
+
+onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
+onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
+onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 var hitpoints = 3
 var state = STATES.move
-var speed = 150
 var input = Vector2.ZERO
 var velocity = Vector2.ZERO
 var coyote_jump = false
@@ -32,25 +40,21 @@ func _physics_process(delta):
 	input.x = Input.get_axis("ui_left", "ui_right")
 	input.y = Input.get_axis("ui_up", "ui_down")
 	
+#	if Input.is_action_just_pressed("shoot"):
+#		shoot()
+	
 	update_velocity(delta)
+	update_debug_text()
 	
 	# Flip sprite if input
 	if input.x != 0:
 		animatedSprite.flip_h = input.x < 0
 
 	match state:
-		STATES.move: 
-			debug.text = "move"
-			move_state(delta)
-		STATES.jump: 
-			debug.text = "jump"
-			jump_state(delta)
-		STATES.fall: 
-			debug.text = "fall"
-			fall_state(delta)
-		STATES.crouch: 
-			debug.text = "crouch"
-			crouch_state(delta)
+		STATES.move: move_state(delta)
+		STATES.jump: jump_state(delta)
+		STATES.fall: fall_state(delta)
+		STATES.crouch: crouch_state(delta)
 
 func move_state(_delta):
 	var was_on_floor = is_on_floor()
@@ -90,7 +94,7 @@ func fall_state(_delta):
 	if is_on_floor():
 		state = STATES.move
 
-func crouch_state(delta):
+func crouch_state(_delta):
 #	collisionShape.extents = Vector2(2, 3)
 	animatedSprite.animation = "Crouch"
 	
@@ -102,19 +106,25 @@ func crouch_state(delta):
 		state = STATES.move
 
 func update_velocity(delta):
-	velocity.y += gravity * delta
-	velocity.y = min(velocity.y, max_gravity)
+	velocity.y += get_gravity() * delta
+	# TODO: check if we need a max ?
+#	velocity.y = min(velocity.y, max_gravity)
 
 	# Acceleration and friction
 	if input.x != 0:
 		var acc_weight = acceleration if is_on_floor() else acceleration * .5
-		velocity.x = lerp(velocity.x, input.x * speed, acc_weight)
+		velocity.x = lerp(velocity.x, input.x * move_speed, acc_weight)
 	else:
 		var friction_weight = friction if is_on_floor() else friction * .25
 		velocity.x = lerp(velocity.x, 0, friction_weight)
+#	var direction = Input.get_axis("ui_left", "ui_right")
+#	if direction:
+#		velocity.x = direction * move_speed
+#	else:
+#		velocity.x = move_toward(velocity.x, 0, move_speed)
 
 func jump(force_modifier = 1.0):
-	velocity.y = -jump_force * force_modifier
+	velocity.y = jump_velocity * force_modifier
 
 func collided_with_enemy(damage, otherPosition):
 	print(healthLossTimer.get_time_left())
@@ -124,6 +134,21 @@ func collided_with_enemy(damage, otherPosition):
 		print("other pos: %s" % [otherPosition])
 		Events.emit_signal("update_player_health", hitpoints)
 		healthLossTimer.start()
+
+#func shoot() -> void:
+#	var b = Bullet.instance()
+#	add_child(b)
+#	b.transform = gun.transform
 	
 func _on_CoyoteJumpTimer_timeout():
 	coyote_jump = false
+
+func update_debug_text() -> void:
+	match state:
+		STATES.move: debug.text = "move"
+		STATES.jump: debug.text = "jump"
+		STATES.fall: debug.text = "fall"
+		STATES.crouch: debug.text = "crouch"
+		
+func get_gravity() -> float:
+	return jump_gravity if velocity.y < 0.0 else fall_gravity

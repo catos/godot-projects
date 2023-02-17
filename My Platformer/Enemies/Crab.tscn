@@ -11,7 +11,7 @@ extents = Vector2( 6, 4.5 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 80, 80, 16, 16 )
+region_rect = Rect2( 272, 128, 16, 16 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4

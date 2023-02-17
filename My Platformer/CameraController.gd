@@ -3,7 +3,7 @@ extends Camera2D
 export (NodePath) var target_path = null
 var target_node
 
-export (float, 0, 5) var lerp_speed = 4
+export (float, 0.0, 5.0) var lerp_speed = 4.0
 
 func _ready():
 	target_node = get_node(target_path)
