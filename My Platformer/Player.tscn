@@ -81,10 +81,10 @@ script = ExtResource( 2 )
 Bullet = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -1 )
 frames = SubResource( 6 )
 animation = "Idle"
 playing = true
@@ -102,4 +102,17 @@ margin_right = 53.0
 margin_bottom = -14.0
 text = "State"
 
+[node name="RayCastRight" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 8, 0 )
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -8, 0 )
+
+[node name="WallJumpTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="timeout" from="CoyoteJumpTimer" to="." method="_on_CoyoteJumpTimer_timeout"]
+[connection signal="timeout" from="WallJumpTimer" to="." method="_on_WallJumpTimer_timeout"]

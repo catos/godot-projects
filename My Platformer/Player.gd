@@ -7,6 +7,9 @@ onready var collisionShape := $CollisionShape2D
 onready var animatedSprite := $AnimatedSprite
 onready var coyoteJumpTimer := $CoyoteJumpTimer
 onready var healthLossTimer := $HealthLossTimer
+onready var wallJumpTimer := $WallJumpTimer
+onready var rayRight := $RayCastRight
+onready var rayLeft := $RayCastLeft
 #onready var gun := $Gun
 onready var debug := $Debug
 
@@ -25,11 +28,14 @@ onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -
 onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
+onready var wall_jump_velocity: float = 200
+
 var hitpoints = 3
 var state = STATES.move
 var input = Vector2.ZERO
 var velocity = Vector2.ZERO
 var coyote_jump = false
+var wall_jump_on_timer = false
 
 #func _draw():
 #	var from = global_transform.origin
@@ -45,6 +51,7 @@ func _physics_process(delta):
 	
 	update_velocity(delta)
 	update_debug_text()
+	wall_jump()
 	
 	# Flip sprite if input
 	if input.x != 0:
@@ -126,6 +133,21 @@ func update_velocity(delta):
 func jump(force_modifier = 1.0):
 	velocity.y = jump_velocity * force_modifier
 
+func wall_jump():
+	var is_on_wall = rayRight.is_colliding() or rayLeft.is_colliding()
+	var can_wall_jump = is_on_wall and not is_on_floor() and not wall_jump_on_timer and Input.is_action_just_pressed("jump")
+	
+	var x_force = wall_jump_velocity
+	if rayRight.is_colliding():
+		x_force *= -1
+	
+	if can_wall_jump:
+		print("wall jump!")
+		wall_jump_on_timer = true
+		wallJumpTimer.start()
+		velocity.y = jump_velocity
+		velocity.x = x_force
+
 func collided_with_enemy(damage, otherPosition):
 	print(healthLossTimer.get_time_left())
 	if healthLossTimer.get_time_left() == 0:
@@ -152,3 +174,7 @@ func update_debug_text() -> void:
 		
 func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
+
+
+func _on_WallJumpTimer_timeout():
+	wall_jump_on_timer = false
