@@ -1,0 +1,17 @@
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/bin/Debug/CSharpReference.deps.json
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/bin/Debug/CSharpReference.runtimeconfig.json
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/bin/Debug/CSharpReference.dll
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/bin/Debug/CSharpReference.pdb
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.csproj.AssemblyReference.cache
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.AssemblyInfoInputs.cache
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.AssemblyInfo.cs
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.csproj.CoreCompileInputs.cache
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.csproj.CopyComplete
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.dll
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/refint/CSharpReference.dll
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.pdb
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/CSharpReference.genruntimeconfig.cache
+/Users/cato/Godot/godot-projects/4.0/CSharpReference/.godot/mono/temp/obj/Debug/ref/CSharpReference.dll
