@@ -3,9 +3,9 @@ extends CharacterBody2D
 enum States { MOVE, JUMP, FALL, CROUCH }
 var state: States = States.MOVE
 
-@export var move_speed: float = 250.0
+@export var move_speed: float = 150.0
 
-@export var jump_height: float = 125.0
+@export var jump_height: float = 75.0
 @export var jump_time_to_peak: float = 0.4
 @export var jump_time_to_descent: float = 0.3
 
@@ -14,16 +14,18 @@ var state: States = States.MOVE
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 @onready var animatedSprite := $AnimatedSprite2D
+@onready var coyoteJumpTimer := $CoyoteTimer
 @onready var debug := $Debug
 
-var direction: Vector2 = Vector2.ZERO
+var direction := Vector2.ZERO
+var coyote_jump := false
+var can_jump := false
 
 func _input(event):
 	if event.is_action_pressed("reset"):
 		position = Vector2(128, 128)
 	
 func _physics_process(delta):
-	update_debug()
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -37,12 +39,12 @@ func _physics_process(delta):
 		animatedSprite.flip_h = direction.x > 0
 	
 	match state:
-		States.MOVE: move_state(delta)
-		States.JUMP: jump_state(delta)
-		States.FALL: fall_state(delta)
-		States.CROUCH: crouch_state(delta)
+		States.MOVE: move_state()
+		States.JUMP: jump_state()
+		States.FALL: fall_state()
+		States.CROUCH: crouch_state()
 
-func move_state(_delta):
+func move_state():
 	update_velocity_and_move()
 
 	if (velocity.x != 0):
@@ -50,28 +52,28 @@ func move_state(_delta):
 	else:
 		animatedSprite.animation = "Idle"
 	
-	if velocity.y > 0:
-		state = States.FALL
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jump()
+	if (Input.is_action_just_pressed("jump") and can_jump):
 		state = States.JUMP
+		jump()
+
+	if (velocity.y > 0):
+		state = States.FALL
 
 	if Input.is_action_just_pressed("down") and is_on_floor():
 		state = States.CROUCH
 		
-func jump_state(_delta):
+func jump_state():
 	update_velocity_and_move()
 
 	animatedSprite.animation = "Jump"
 	
-	if velocity.y > 0:
+	if (velocity.y > 0):
 		state = States.FALL
 	
-	if is_on_floor():
+	if (is_on_floor()):
 		state = States.MOVE
 
-func fall_state(_delta):
+func fall_state():
 	update_velocity_and_move()
 
 	animatedSprite.animation = "Fall"
@@ -79,7 +81,7 @@ func fall_state(_delta):
 	if is_on_floor():
 		state = States.MOVE
 
-func crouch_state(_delta):
+func crouch_state():
 	if Input.is_action_just_pressed("jump"): 
 		state = States.JUMP
 		jump(1.2)
@@ -92,7 +94,18 @@ func update_velocity_and_move():
 		velocity.x = direction.x * move_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, move_speed)
+	
+	var was_on_floor = is_on_floor()
 	move_and_slide()
+	var just_left_floor = was_on_floor and not is_on_floor()
+	if (just_left_floor and velocity.y >= 0):
+		coyote_jump = true
+		coyoteJumpTimer.start()
+
+	can_jump = is_on_floor() or coyote_jump
+
+	debug.text = "is: " + str(is_on_floor()) + "\nwas: " + str(was_on_floor) + "\njust_left: " + str(just_left_floor) + "\ncoyote: " + str(coyote_jump) + "\ncan: " + str(can_jump)
+
 
 func jump(force_modifier = 1.0):
 	velocity.y = jump_velocity * force_modifier
@@ -100,13 +113,15 @@ func jump(force_modifier = 1.0):
 func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
-func update_debug():
-	var state_string = ""
-	match state:
-		States.MOVE: state_string = "move"
-		States.JUMP: state_string = "jump"
-		States.FALL: state_string = "fall"
-		States.CROUCH: state_string = "crouch"
-		
-	debug.text = state_string + " - " + str(is_on_floor())
-	
+#func update_debug():
+#	debug.text = get_state_string()
+#
+#func get_state_string():
+#	match state:
+#		States.MOVE: return "move"
+#		States.JUMP: return "jump"
+#		States.FALL: return "fall"
+#		States.CROUCH: return "crouch"
+
+func _on_coyote_timer_timeout():
+	coyote_jump = false

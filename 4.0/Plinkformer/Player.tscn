@@ -77,10 +77,14 @@ animation = &"Jump"
 autoplay = "Run"
 
 [node name="Debug" type="Label" parent="."]
-offset_left = 10.0
-offset_top = -34.0
-offset_right = 59.0
+offset_left = 18.0
+offset_top = -60.0
+offset_right = 67.0
 offset_bottom = -17.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 8
 text = "State"
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
