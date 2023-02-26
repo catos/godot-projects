@@ -1,72 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cptcuafmrupah"]
 
 [ext_resource type="PackedScene" uid="uid://dav6n7sm8vlx8" path="res://Player.tscn" id="1_38vgc"]
-[ext_resource type="PackedScene" uid="uid://blayiipgf6gd5" path="res://Block.tscn" id="3_ciox0"]
+[ext_resource type="PackedScene" uid="uid://c36uaxkgm6d0y" path="res://tile_map.tscn" id="2_lkeaj"]
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_38vgc")]
-position = Vector2(352, 416)
+position = Vector2(192, 192)
+move_speed = 150.0
+jump_height = 48.0
 
-[node name="Block" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(96, 544)
-
-[node name="Block2" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(160, 544)
-
-[node name="Block3" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(224, 544)
-
-[node name="Block4" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(288, 544)
-
-[node name="Block5" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(352, 544)
-
-[node name="Block6" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(416, 544)
-
-[node name="Block7" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(480, 544)
-
-[node name="Block8" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(544, 544)
-
-[node name="Block9" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(608, 544)
-
-[node name="Block10" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(672, 544)
-
-[node name="Block11" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(736, 544)
-
-[node name="Block12" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(800, 544)
-
-[node name="Block13" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(864, 544)
-
-[node name="Block14" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(928, 544)
-
-[node name="Block15" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(992, 544)
-
-[node name="Block16" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(992, 480)
-
-[node name="Block17" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(992, 416)
-
-[node name="Block18" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(992, 352)
-
-[node name="Block19" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(800, 480)
-
-[node name="Block20" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(800, 416)
-
-[node name="Block21" parent="." instance=ExtResource("3_ciox0")]
-position = Vector2(608, 480)
+[node name="TileMap" parent="." instance=ExtResource("2_lkeaj")]
+layer_0/tile_data = PackedInt32Array(786440, 65536, 0, 786441, 131072, 0, 786442, 131072, 0, 786443, 131072, 0, 786444, 131072, 0, 786445, 131072, 0, 786446, 131072, 0, 786447, 131072, 0, 786448, 131072, 0, 786449, 131072, 0, 786450, 131072, 0, 786451, 131072, 0, 786452, 131072, 0, 786453, 196608, 0, 720913, 262144, 7)

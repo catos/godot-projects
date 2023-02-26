@@ -1,0 +1,10 @@
+2a60927148abd1d33b818b535e306557
+::res://::1677436384
+block.tscn::PackedScene::3089126656120701248::1677435498::0::1::::<><>::uid://46j6cl6t4bcg
+icon.svg::CompressedTexture2D::296540279154120027::1677248137::1677248141::1::::<><>::
+player.cs::CSharpScript::-1::1677415674::0::1::::<><>::
+player.tscn::PackedScene::7052514843634262961::1677435498::0::1::::<><>::res://player.cs<>uid://bmjmn3w45lets
+world.tscn::PackedScene::3791776628744355880::1677435498::0::1::::<><>::uid://c7qj5h11dilcr<>uid://bkanp2gslxo4g
+::res://Assets/::1677268135
+characters_packed.png::CompressedTexture2D::3248019532367645056::1677268131::1677268135::1::::<><>::
+tiles_packed.png::CompressedTexture2D::2100074111899320582::1677268131::1677268135::1::::<><>::

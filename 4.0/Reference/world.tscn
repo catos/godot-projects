@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bua1aigwrtgua"]
+
+[ext_resource type="PackedScene" uid="uid://c7qj5h11dilcr" path="res://player.tscn" id="1_ivs2h"]
+[ext_resource type="PackedScene" uid="uid://bkanp2gslxo4g" path="res://block.tscn" id="2_fcc7q"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ivs2h")]
+position = Vector2(96, 104)
+
+[node name="Block" parent="." instance=ExtResource("2_fcc7q")]
+position = Vector2(104, 168)
+
+[node name="Block3" parent="." instance=ExtResource("2_fcc7q")]
+position = Vector2(88, 168)
+
+[node name="Block4" parent="." instance=ExtResource("2_fcc7q")]
+position = Vector2(72, 168)
+
+[node name="Block2" parent="." instance=ExtResource("2_fcc7q")]
+position = Vector2(120, 168)

@@ -1,0 +1,17 @@
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\bin\Debug\Reference.deps.json
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\bin\Debug\Reference.runtimeconfig.json
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\bin\Debug\Reference.dll
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\bin\Debug\Reference.pdb
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.csproj.AssemblyReference.cache
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.GeneratedMSBuildEditorConfig.editorconfig
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.AssemblyInfoInputs.cache
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.AssemblyInfo.cs
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.csproj.CoreCompileInputs.cache
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.csproj.CopyComplete
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.dll
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\refint\Reference.dll
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.pdb
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\Reference.genruntimeconfig.cache
+C:\Godot\Projects\4.0\Reference\.godot\mono\temp\obj\Debug\ref\Reference.dll
