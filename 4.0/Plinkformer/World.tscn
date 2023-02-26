@@ -1,14 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cptcuafmrupah"]
+[gd_scene load_steps=4 format=3 uid="uid://dtw8yo4v4chu6"]
 
-[ext_resource type="PackedScene" uid="uid://dav6n7sm8vlx8" path="res://Player.tscn" id="1_38vgc"]
-[ext_resource type="PackedScene" uid="uid://c36uaxkgm6d0y" path="res://tile_map.tscn" id="2_lkeaj"]
+[ext_resource type="PackedScene" uid="uid://bnb2cvbgseile" path="res://player.tscn" id="1_nlhpj"]
+[ext_resource type="PackedScene" uid="uid://c36uaxkgm6d0y" path="res://tile_map.tscn" id="2_aq3w2"]
+[ext_resource type="PackedScene" uid="uid://d3xyciokoarjr" path="res://camera.tscn" id="3_rk3tx"]
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_38vgc")]
+[node name="Player" parent="." instance=ExtResource("1_nlhpj")]
 position = Vector2(128, 128)
 move_speed = 150.0
 jump_height = 48.0
 
-[node name="TileMap" parent="." instance=ExtResource("2_lkeaj")]
-layer_0/tile_data = PackedInt32Array(786442, 131072, 0, 786443, 131072, 0, 786444, 131072, 0, 786445, 131072, 0, 786446, 131072, 0, 786447, 131072, 0, 786448, 131072, 0, 786449, 131072, 0, 786450, 131072, 0, 786451, 131072, 0, 786452, 131072, 0, 786453, 0, 0, 720913, 262144, 7, 720909, 0, 0, 655374, 0, 0, 720910, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 458768, 0, 0, 524304, 0, 0, 589840, 0, 0, 655376, 0, 0, 720912, 0, 0, 327697, 0, 0, 393233, 0, 0, 458769, 0, 0, 524305, 0, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 589830, 0, 0, 589831, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786441, 0, 0)
+[node name="TileMap" parent="." instance=ExtResource("2_aq3w2")]
+layer_0/tile_data = PackedInt32Array(786442, 131072, 0, 786443, 131072, 0, 786444, 131072, 0, 786445, 131072, 0, 786446, 131072, 0, 786447, 131072, 0, 786448, 131072, 0, 786449, 131072, 0, 786450, 131072, 0, 786451, 131072, 0, 786452, 131072, 0, 786453, 131072, 0, 786454, 131072, 0, 786455, 131072, 0, 786456, 196608, 0, 589830, 65536, 0, 589831, 196608, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786441, 65536, 0, 589845, 196608, 0, 589844, 131072, 0, 589843, 131072, 0, 589842, 131072, 0, 589841, 65536, 0)
+
+[node name="Camera" parent="." instance=ExtResource("3_rk3tx")]
+target_path = NodePath("../Player")

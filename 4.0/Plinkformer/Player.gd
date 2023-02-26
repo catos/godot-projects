@@ -36,13 +36,6 @@ func _physics_process(delta):
 	if (direction.x != 0):
 		animatedSprite.flip_h = direction.x > 0
 	
-	# Update velocity & move
-	if direction:
-		velocity.x = direction.x * move_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, move_speed)
-	move_and_slide()
-
 	match state:
 		States.MOVE: move_state(delta)
 		States.JUMP: jump_state(delta)
@@ -50,6 +43,13 @@ func _physics_process(delta):
 		States.CROUCH: crouch_state(delta)
 
 func move_state(_delta):
+	update_velocity_and_move()
+
+	if (velocity.x != 0):
+		animatedSprite.animation = "Run"
+	else:
+		animatedSprite.animation = "Idle"
+	
 	if velocity.y > 0:
 		state = States.FALL
 
@@ -61,6 +61,10 @@ func move_state(_delta):
 		state = States.CROUCH
 		
 func jump_state(_delta):
+	update_velocity_and_move()
+
+	animatedSprite.animation = "Jump"
+	
 	if velocity.y > 0:
 		state = States.FALL
 	
@@ -68,6 +72,10 @@ func jump_state(_delta):
 		state = States.MOVE
 
 func fall_state(_delta):
+	update_velocity_and_move()
+
+	animatedSprite.animation = "Fall"
+	
 	if is_on_floor():
 		state = States.MOVE
 
@@ -78,6 +86,13 @@ func crouch_state(_delta):
 	
 	if Input.is_action_just_released("down"):
 		state = States.MOVE
+
+func update_velocity_and_move():
+	if direction:
+		velocity.x = direction.x * move_speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, move_speed)
+	move_and_slide()
 
 func jump(force_modifier = 1.0):
 	velocity.y = jump_velocity * force_modifier
