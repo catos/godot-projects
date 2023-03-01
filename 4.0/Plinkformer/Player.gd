@@ -18,7 +18,7 @@ var state: States = States.MOVE
 @onready var debug := $Debug
 
 var direction := Vector2.ZERO
-var coyote_jump := false
+var is_coyote_jumping := false
 var can_jump := false
 
 func _input(event):
@@ -44,6 +44,10 @@ func _physics_process(delta):
 		States.FALL: fall_state()
 		States.CROUCH: crouch_state()
 
+	if (Input.is_action_just_pressed("jump") and can_jump):
+		state = States.JUMP
+		jump()
+
 func move_state():
 	update_velocity_and_move()
 
@@ -51,10 +55,6 @@ func move_state():
 		animatedSprite.animation = "Run"
 	else:
 		animatedSprite.animation = "Idle"
-	
-	if (Input.is_action_just_pressed("jump") and can_jump):
-		state = States.JUMP
-		jump()
 
 	if (velocity.y > 0):
 		state = States.FALL
@@ -99,12 +99,12 @@ func update_velocity_and_move():
 	move_and_slide()
 	var just_left_floor = was_on_floor and not is_on_floor()
 	if (just_left_floor and velocity.y >= 0):
-		coyote_jump = true
+		is_coyote_jumping = true
 		coyoteJumpTimer.start()
 
-	can_jump = is_on_floor() or coyote_jump
+	can_jump = is_on_floor() or is_coyote_jumping
 
-	debug.text = "is: " + str(is_on_floor()) + "\nwas: " + str(was_on_floor) + "\njust_left: " + str(just_left_floor) + "\ncoyote: " + str(coyote_jump) + "\ncan: " + str(can_jump)
+#	debug.text = "coyote: " + str(is_coyote_jumping) + "\ncan: " + str(can_jump)
 
 
 func jump(force_modifier = 1.0):
@@ -113,15 +113,5 @@ func jump(force_modifier = 1.0):
 func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
-#func update_debug():
-#	debug.text = get_state_string()
-#
-#func get_state_string():
-#	match state:
-#		States.MOVE: return "move"
-#		States.JUMP: return "jump"
-#		States.FALL: return "fall"
-#		States.CROUCH: return "crouch"
-
 func _on_coyote_timer_timeout():
-	coyote_jump = false
+	is_coyote_jumping = false

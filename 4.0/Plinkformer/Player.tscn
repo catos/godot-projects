@@ -86,5 +86,6 @@ theme_override_font_sizes/font_size = 8
 text = "State"
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
