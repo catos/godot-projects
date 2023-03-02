@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct52j7j61g3i0"]
+
+[ext_resource type="PackedScene" uid="uid://cuysx466bpo2d" path="res://Player/player.tscn" id="1_jf1ks"]
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_owdr1"]
+[ext_resource type="PackedScene" uid="uid://d3xyciokoarjr" path="res://camera.tscn" id="2_ncxua"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_owdr1")
+
+[node name="Player" parent="." instance=ExtResource("1_jf1ks")]
+
+[node name="Camera" parent="." instance=ExtResource("2_ncxua")]
+script = null
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

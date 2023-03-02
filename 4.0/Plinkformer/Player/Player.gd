@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 enum States { MOVE, JUMP, FALL, CROUCH }
 var state: States = States.MOVE
@@ -103,15 +104,17 @@ func update_velocity_and_move():
 		coyoteJumpTimer.start()
 
 	can_jump = is_on_floor() or is_coyote_jumping
-
-#	debug.text = "coyote: " + str(is_coyote_jumping) + "\ncan: " + str(can_jump)
-
+	#	debug.text = "coyote: " + str(is_coyote_jumping) + "\ncan: " + str(can_jump)
 
 func jump(force_modifier = 1.0):
 	velocity.y = jump_velocity * force_modifier
 
 func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
+
+func player_die():
+	queue_free()
+	Events.emit_signal("player_died")
 
 func _on_coyote_timer_timeout():
 	is_coyote_jumping = false

@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnb2cvbgseile"]
+[gd_scene load_steps=10 format=3 uid="uid://cuysx466bpo2d"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_sm1av"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_jjmcx"]
 [ext_resource type="Texture2D" uid="uid://ddrjbpf1kciqw" path="res://Assets/characters_packed.png" id="2_6yykc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4166o"]
@@ -65,7 +65,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_sm1av")
+script = ExtResource("1_jjmcx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
