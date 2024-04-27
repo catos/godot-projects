@@ -1,6 +1,5 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-var velocity = Vector2.ZERO
 var max_speed = 100
 var acceleration = 400
 var direction = -1
@@ -24,5 +23,8 @@ func _process(delta):
 	if Input.is_action_pressed("ui_left"):
 		self.rotate(-2 * delta)
 	
-	velocity = move_and_slide(velocity, Vector2.DOWN)
+	set_velocity(velocity)
+	set_up_direction(Vector2.DOWN)
+	move_and_slide()
+	velocity = velocity
 	

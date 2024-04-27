@@ -1,0 +1,10 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1714236312
+Block.tscn::PackedScene::-1::1714236307::0::1::::<><>::res://tile.png
+default_env.tres::Environment::-1::1714236307::0::1::::<><>::
+icon.png::CompressedTexture2D::8835623171796336524::1675502543::1714236313::1::::<><>::
+Player.gd::GDScript::-1::1714236307::0::1::::<>CharacterBody2D<>::
+Player.tscn::PackedScene::-1::1714236307::0::1::::<><>::res://spaceship.png<>res://Player.gd
+spaceship.png::CompressedTexture2D::3792042015254389653::1675502543::1714236313::1::::<><>::
+Test.tscn::PackedScene::-1::1714236307::0::1::::<><>::res://Player.tscn<>res://Block.tscn
+tile.png::CompressedTexture2D::8711439644167547119::1675502543::1714236313::1::::<><>::

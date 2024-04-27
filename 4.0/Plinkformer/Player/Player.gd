@@ -104,7 +104,7 @@ func update_velocity_and_move():
 		coyoteJumpTimer.start()
 
 	can_jump = is_on_floor() or is_coyote_jumping
-	#	debug.text = "coyote: " + str(is_coyote_jumping) + "\ncan: " + str(can_jump)
+	#debug.text = "coyote: " + str(is_coyote_jumping) + "\ncan: " + str(can_jump)
 
 func jump(force_modifier = 1.0):
 	velocity.y = jump_velocity * force_modifier
